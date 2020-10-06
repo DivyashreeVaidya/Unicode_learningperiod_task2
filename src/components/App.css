@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+ 
+}
+/*.container{
+  background-image: url(bg2.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-attachment: fixed;
+}*/
+nav{
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type:none;
+  /*background-color: rgb(2, 34, 34);*/
+  color: aliceblue;
+  font-size: large;
+  max-width: 100%;
+  height: auto;
+  padding: 16px 16px;
+}
+.nav_links{
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type:none;
+}
+.homepage{
+  background-color: rgb(2, 34, 34);
+}

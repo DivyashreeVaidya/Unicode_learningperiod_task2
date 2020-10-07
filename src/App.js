@@ -11,8 +11,8 @@ import {getTokenFromUrl} from './spotify';
 import axios from 'axios';
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem('token'));
-  const [artistData, setArtistData] = useState([]);
-  let artists;
+  //const [artistData, setArtistData] = useState([]);
+  //let artists;
   /*const getToken = () =>
   {
     return window.location.hash

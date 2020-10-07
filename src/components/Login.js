@@ -34,11 +34,12 @@ function Login(){
   
   
   
-  return(
+  return(<div>
       <div className="login">
-          <img className="login_Logo" src={Spotify_Logo_RGB_White} alt="Logo"></img>
-          <Button variant="contained" className= {classes.buttonColor}><a href = {loginURL} className="login_link">Log In to Spotify</a></Button>
-      </div>
+  <img className="login_Logo" src={Spotify_Logo_RGB_White} alt="Logo"></img>
+<Button variant="contained" className= {classes.buttonColor}><a href = {loginURL} className="login_link">Log In to Spotify</a></Button>
+</div>
+</div>
   )
 }
 

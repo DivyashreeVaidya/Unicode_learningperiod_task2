@@ -28,9 +28,19 @@
 }
 
 .login_Logo{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width:50%;
     height:80%;
+}
+@media only screen and (max-width: 880px) {
+    .login_Logo{
+        width:100%;
+        height:50%;
+        flex: 100%;
+        max-width: 100%;
+}
 }
 .login_link{
     text-decoration: none;

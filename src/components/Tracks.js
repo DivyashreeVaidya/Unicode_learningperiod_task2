@@ -32,7 +32,6 @@ function Tracks() {
   const [token, setToken] = useState(sessionStorage.getItem('token'));
   //console.log("token is " + token);
   const [tracksData, setTracksData] = useState();
-  let tracks;
   const classes = useStyles();
   const trackEndpointUrl = 'https://api.spotify.com/v1/me/tracks?offset=5&limit=10';
   const fetchTrackDataHandler = async () => {

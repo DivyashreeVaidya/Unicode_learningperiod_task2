@@ -5,4 +5,6 @@
     justify-content: center;
     color: white;
 }
-
+Typography:hover{
+    text-decoration: underline;
+}

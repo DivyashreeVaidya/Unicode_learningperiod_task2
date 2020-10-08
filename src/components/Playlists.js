@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import './Playlists.css';
-import {getTokenFromUrl} from './Homepage'
+//import {getTokenFromUrl} from './Homepage'
 import { CircularProgress, Paper, Avatar, Typography, List, ListItem, Divider, ListItemText, ListItemAvatar, Grid, Card, CardContent, CardActionArea} from '@material-ui/core';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -52,20 +52,19 @@ function Playlists() {
   };
 
   useEffect(() => {
-    const _token = getTokenFromUrl()
-
-    if(_token){
+    //const _token = getTokenFromUrl()
+    /*if(_token){
     setToken(_token);
     console.log( `_token is ${_token}`);
     console.log(`token for playlists is ${token}`);
-     }
+     }*/
     fetchplaylistDataHandler();
   }, []);
   return (
     <div className="playlists_content">
       <h1>Playlists</h1>
       <Grid container direction='row' justify='center' alignItems='center' spacing = {6}>
-    {playlistsData && (
+    {playlistsData? (
         <div>
         {playlistsData.data.items.map(item => {
           return (
@@ -97,7 +96,7 @@ function Playlists() {
           )
           })}
       </div>
-    )}
+    ):<CircularProgress color="white"/>}
     </Grid>
     </div>
   );

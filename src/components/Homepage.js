@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import './Homepage.css';
-import { CircularProgress, Paper, Avatar, Typography, List, ListItem, Divider, ListItemText, ListItemAvatar, Grid, Card, CardContent, CardActionArea} from '@material-ui/core';
+import { CircularProgress, Paper, Avatar, Typography, List, ListItem, Divider, ListItemText, ListItemAvatar} from '@material-ui/core';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const darkTheme = createMuiTheme({
@@ -32,33 +32,43 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: "middle"
   },
 }));
-export const getTokenFromUrl = ()=> {
+/*export const getTokenFromUrl = ()=> {
   let string = window.location.hash;
   let _and = string.indexOf('&');
   let access_token=string.substring(14,_and);
   sessionStorage.setItem('token', access_token);
   return access_token;
-}
+}*/
 
 function Homepage () {
-  //const _token = getTokenFromUrl();
+  const _token = window.location.hash;
   //console.log(_token);
-  /*export const getTokenFromUrl = ()=> {
-    let string = window.location.hash;
-    let _and = string.indexOf('&');
-    let access_token=string.substring(14,_and);
-    sessionStorage.setItem('token', access_token);
-    return access_token;
-  }*/
+
   const [token, setToken] = useState(sessionStorage.getItem('token'));
   const [userData, setUserData] = useState();
   //console.log(userData);
   //console.log("token is " + token);
   const [artistData, setArtistData] = useState([]);
-  let artists;
+  let artists;  
   const classes = useStyles();
   const userEndpointUrl = 'https://api.spotify.com/v1/me';
   const artistEndpointUrl = 'https://api.spotify.com/v1/me/following?type=artist';
+  
+  const getTokenFromUrl = ()=> {
+      //setToken(_token);
+        console.log(token);
+        var res = _token.split("&");
+        //console.log(res[0]);
+        res = res[0] + '=';
+        res = res.split("=");
+        console.log(res[1]);
+        setToken(res[1]);
+        sessionStorage.setItem('token', token);
+        console.log(token);
+        window.location.hash = "";
+  };
+  
+  
   const fetchUserDataHandler = async () => {
         return axios(userEndpointUrl,{
           method:'GET',
@@ -104,22 +114,23 @@ function Homepage () {
       
     };
     useEffect(() => {
-      const _token = getTokenFromUrl();
-
-      if(_token){
+      getTokenFromUrl();
+      //const _token = getTokenFromUrl();
+      /*if(_token){
         setToken(_token);
         console.log( `_token is ${_token}`);
         console.log(`token for homepage is ${token}`);
          }
          fetchUserDataHandler();
-         fetchArtistDataHandler();
+         fetchArtistDataHandler();*/
          
-  }, [token]);
-  /*if(token){
+  }, [_token]);
+
+   if(token){
     fetchUserDataHandler();
     fetchArtistDataHandler();
     //console.log('this is the token2:'+ token);
-  }*/
+  }
   return (<div>
     { userData? (<div className="home_content">
     <h1>Welcome back, {userData.data.display_name}!</h1>
@@ -148,7 +159,7 @@ function Homepage () {
                       variant="h5"
                       className={classes.inline}
                       color="textPrimary"
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: 'pointer'}}
                     >
                       {item.name}
                     </Typography>
@@ -178,7 +189,7 @@ function Homepage () {
  
   </div>
   </div>):
-  <CircularProgress color="secondary" />
+  <CircularProgress color="black" style={{height:'100vh', margin:'auto'}} />
 }</div>
 );
 }

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import './Albums.css';
-import {getTokenFromUrl} from './Homepage'
+//import {getTokenFromUrl} from './Homepage'
 import { CircularProgress, Paper, Avatar, Typography, List, ListItem, Divider, ListItemText, ListItemAvatar, Grid, Card, CardContent, CardActionArea} from '@material-ui/core';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -30,10 +31,10 @@ function Albums() {
   //const _token = getTokenFromUrl();
   const [token, setToken] = useState(sessionStorage.getItem('token'));
   const [albumData, setAlbumData] = useState();
-  let albums;
   const classes = useStyles();
   const albumEndpointUrl = 'https://api.spotify.com/v1/me/albums';
-  
+  const matches = useMediaQuery('(max-width:600px)');
+
   const fetchAlbumDataHandler = async () => {
     return axios(albumEndpointUrl,{
       method:'GET',
@@ -53,13 +54,13 @@ function Albums() {
   };
 
   useEffect(() => {
-    const _token = getTokenFromUrl()
+    //const _token = getTokenFromUrl()
 
-    if(_token){
+    /*if(_token){
     setToken(_token);
     console.log( `_token is ${_token}`);
     console.log(`token for album is ${token}`);
-     }
+     }*/
     fetchAlbumDataHandler();
   }, []);
 
@@ -67,7 +68,7 @@ function Albums() {
     <div className="album_content">
       <h1>Albums</h1>
       <Grid container direction='row' justify='center' alignItems='center' spacing = {6}>
-    {albumData && (
+    {albumData? (
         <div>
         {albumData.data.items.map(item => {
           return (
@@ -77,7 +78,7 @@ function Albums() {
               <Paper className= {classes.paper} elevation={15} style={{backgroundColor:'black', color:'white'}}>
               <Card  className={classes.root} style={{backgroundColor:'black', color:'white'}}>
                <CardActionArea>
-               <img src={item.album.images[1].url} style={{borderRadius:'5px', padding:'5px'}}/>
+               <img className="coverImage" src={item.album.images[1].url} style={{borderRadius:'5px', padding:'5px'}}/>
                 <CardContent>
                 <Typography variant="h6"  style={{ cursor: 'pointer' }}>
                  {item.album.name}
@@ -99,7 +100,8 @@ function Albums() {
           )
           })}
       </div>
-    )}
+    ):<CircularProgress color="white"/>
+    }
     </Grid>
     </div>
   );

@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import './Homepage.css';
 import { CircularProgress, Paper, Avatar, Typography, List, ListItem, Divider, ListItemText, ListItemAvatar} from '@material-ui/core';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { fade, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -24,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justify: 'space-between',
     alignItems: 'center',
-    verticalAlign:'middle'
+    verticalAlign:'middle',
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
   },
   large: {
     width: theme.spacing(18),

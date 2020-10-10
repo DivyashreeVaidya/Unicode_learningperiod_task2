@@ -47,6 +47,7 @@ function Albums() {
     .then((response)=>{
       console.log(response)
       setAlbumData(response)
+      console.log(albumData)
     })
     .catch(error=> {
       console.log(error); 
@@ -54,13 +55,6 @@ function Albums() {
   };
 
   useEffect(() => {
-    //const _token = getTokenFromUrl()
-
-    /*if(_token){
-    setToken(_token);
-    console.log( `_token is ${_token}`);
-    console.log(`token for album is ${token}`);
-     }*/
     fetchAlbumDataHandler();
   }, []);
 
@@ -72,8 +66,10 @@ function Albums() {
         <div>
         {albumData.data.items.map(item => {
           return (
+            
+              <div className="album_content--element">
+            <Grid item sm={8}>
             <ThemeProvider theme={darkTheme}>
-            <Grid item xs={4} sm = {8}>
               <a href={item.album.external_urls.spotify} target="_blank" style={{textDecoration:'none', color:'white'}}>
               <Paper className= {classes.paper} elevation={15} style={{backgroundColor:'black', color:'white'}}>
               <Card  className={classes.root} style={{backgroundColor:'black', color:'white'}}>
@@ -91,12 +87,14 @@ function Albums() {
               </Card>
               </Paper>
               </a>
+              </ThemeProvider>
             </Grid>
             <Grid container direction='row' justify='center' alignItems='center' spacing={6}>
             <Grid item xs='auto' sm = {8}/>
             <Grid item xs='auto' sm = {8}/>
             </Grid>
-            </ThemeProvider>
+            </div>
+            
           )
           })}
       </div>

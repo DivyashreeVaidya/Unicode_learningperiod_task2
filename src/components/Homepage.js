@@ -35,13 +35,6 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: "middle"
   },
 }));
-/*export const getTokenFromUrl = ()=> {
-  let string = window.location.hash;
-  let _and = string.indexOf('&');
-  let access_token=string.substring(14,_and);
-  sessionStorage.setItem('token', access_token);
-  return access_token;
-}*/
 
 function Homepage () {
   const _token = window.location.hash;
@@ -58,10 +51,8 @@ function Homepage () {
   const artistEndpointUrl = 'https://api.spotify.com/v1/me/following?type=artist';
   
   const getTokenFromUrl = ()=> {
-      //setToken(_token);
         console.log(token);
         var res = _token.split("&");
-        //console.log(res[0]);
         res = res[0] + '=';
         res = res.split("=");
         console.log(res[1]);
@@ -91,11 +82,6 @@ function Homepage () {
         
       };
       const fetchArtistDataHandler = async () => {
-      /*if(_token){
-        setToken(_token);
-        //console.log(_token);
-      }*/
-    
       return axios(artistEndpointUrl,{
         method:'GET',
         headers:{
@@ -178,7 +164,7 @@ function Homepage () {
                     >
                       {item.followers.total}
                     </Typography>
-                    <Typography color='textSecondary'>{" FOLLOWERS"}</Typography>
+                    {" FOLLOWERS"}
                   </React.Fragment>
                 }
               />
@@ -192,7 +178,7 @@ function Homepage () {
  
   </div>
   </div>):
-  <CircularProgress color="black" style={{height:'100vh', margin:'auto'}} />
+  <CircularProgress color="white"/>
 }</div>
 );
 }

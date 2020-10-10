@@ -1,7 +1,26 @@
 .tracks_content{
     background-color: rgb(2, 34, 34);
-    align-items: center;
-    justify-content: center;
     color: white;
+    height:'100vh';
+    display: 'flex';
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 40px;
+    margin: 25px;
 }
+.tracks_content--element{
+    display: grid;
+    place-items: left;  
+    padding: 8px 14px; 
+}
+@media only screen and (max-width: 600px) {
+    .coverImage{
+        width:auto;
+        height:auto;
+}
+}
+
 

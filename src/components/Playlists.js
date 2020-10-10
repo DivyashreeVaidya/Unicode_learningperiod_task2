@@ -52,12 +52,6 @@ function Playlists() {
   };
 
   useEffect(() => {
-    //const _token = getTokenFromUrl()
-    /*if(_token){
-    setToken(_token);
-    console.log( `_token is ${_token}`);
-    console.log(`token for playlists is ${token}`);
-     }*/
     fetchplaylistDataHandler();
   }, []);
   return (
@@ -68,13 +62,14 @@ function Playlists() {
         <div>
         {playlistsData.data.items.map(item => {
           return (
-            <ThemeProvider theme={darkTheme}>
-            <Grid item xs={4} sm = {8}>
+            <div className="playlists_content--element">
+            <Grid item sm = {8}>
+              <ThemeProvider theme={darkTheme}>
               <a href={item.external_urls.spotify} target="_blank" style={{textDecoration:'none', color:'white'}}>
               <Paper className= {classes.paper} elevation={15} style={{backgroundColor:'black', color:'white'}}>
               <Card  className={classes.root} style={{backgroundColor:'black', color:'white'}}>
                <CardActionArea>
-               <img src={item.images[0].url} style={{borderRadius:'5px', padding:'5px', height:300, width:300}}/>
+               <img className="coverImage" src={item.images[0].url} style={{borderRadius:'5px', padding:'5px', height:300, width:300}}/>
                 <CardContent>
                 <Typography variant="h6"  style={{ cursor: 'pointer' }}>
                  {item.name}
@@ -87,12 +82,14 @@ function Playlists() {
               </Card>
               </Paper>
               </a>
+              </ThemeProvider>
             </Grid>
             <Grid container direction='row' justify='center' alignItems='center' spacing={6}>
             <Grid item xs='auto' sm = {8}/>
             <Grid item xs='auto' sm = {8}/>
             </Grid>
-            </ThemeProvider>
+            </div>
+           
           )
           })}
       </div>

@@ -11,8 +11,6 @@ import {getTokenFromUrl} from './spotify';
 import axios from 'axios';
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem('token'));
-  //const [artistData, setArtistData] = useState([]);
-  //let artists;
   /*const getToken = () =>
   {
     return window.location.hash
@@ -45,26 +43,6 @@ function App() {
     setToken(_token);
     console.log(_token);
   }
-
-  /*axios({
-    method:"GET",
-    url:"https://api.spotify.com/v1/me/following?type=artist",
-    headers:{
-      'Accept':'application/json',
-      'Content-Type':'application/json',
-      'Authorization':'Bearer ' + `${token}`
-    }
-  })
-  .then((response)=>{
-    console.log(response.data.artists.items);
-    setArtistData(response.data.artists.items);
-    artists = response.data.artists.items;
-    console.log(artistData);
-  })
-  .catch(error=>{
-    console.log(error);
-    console.log("tokennn "+ token);
-  })*/
 },[]);
 
 

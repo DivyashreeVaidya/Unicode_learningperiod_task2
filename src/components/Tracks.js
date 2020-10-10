@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import './Tracks.css';
-//import {getTokenFromUrl} from './Homepage'
-import { CircularProgress, Paper, Avatar, Typography, List, ListItem, Divider, ListItemText, ListItemAvatar, Grid, Card, CardContent, CardActionArea} from '@material-ui/core';
+import { CircularProgress, Paper, Avatar, Typography, Grid, Card, CardContent, CardActionArea} from '@material-ui/core';
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const darkTheme = createMuiTheme({
@@ -52,12 +51,6 @@ function Tracks() {
   };
 
   useEffect(() => {
-    //const _token = getTokenFromUrl()
-    /*if(_token){
-    setToken(_token);
-    console.log( `_token is ${_token}`);
-    console.log(`token for tracks is ${token}`);
-     }*/
     fetchTrackDataHandler();
   }, []);
 
@@ -69,13 +62,14 @@ function Tracks() {
            <div>
            {tracksData.data.items.map(item => {
              return (
+              <div className="tracks_content--element">
+               <Grid sm = {8}>
                <ThemeProvider theme={darkTheme}>
-               <Grid item xs={4} sm = {8}>
                  <a href={item.track.external_urls.spotify} target="_blank" style={{textDecoration:'none', color:'white'}}>
                  <Paper className= {classes.paper} elevation={15} style={{backgroundColor:'black', color:'white'}}>
                  <Card  className={classes.root} style={{backgroundColor:'black', color:'white'}}>
                   <CardActionArea>
-                  <img src={item.track.album.images[1].url} style={{borderRadius:'5px', padding:'5px'}}/>
+                  <img className="coverImage" src={item.track.album.images[1].url} style={{borderRadius:'5px', padding:'5px'}}/>
                    <CardContent>
                    <Typography variant="h6"  style={{ cursor: 'pointer' }}>
                     {item.track.name}
@@ -89,12 +83,13 @@ function Tracks() {
                  </Card>
                  </Paper>
                  </a>
+                 </ThemeProvider>
                </Grid>
                <Grid container direction='row' justify='center' alignItems='center' spacing={6}>
                <Grid item xs='auto' sm = {8}/>
                <Grid item xs='auto' sm = {8}/>
                </Grid>
-               </ThemeProvider>
+               </div>
              )
              })}
          </div>):<CircularProgress color="white"/>}
